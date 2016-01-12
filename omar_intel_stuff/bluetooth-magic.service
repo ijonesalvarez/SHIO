@@ -1,0 +1,15 @@
+[Unit]
+Description=Bluetooth Magic
+Requires=bluetooth.target
+After=bluetooth.target
+                                    
+[Service]
+Type=idle   
+RemainAfterExit=true
+ExecStart=/home/root/bluetooth-magic.sh     
+Environment="HOME=/home/root"               
+WorkingDirectory=/home/root/                
+                                        
+[Install]                               
+WantedBy=multi-user.target
+
