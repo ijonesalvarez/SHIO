@@ -1,0 +1,39 @@
+Version=213
+Features=-PAM -AUDIT -SELINUX +IMA +SYSVINIT -LIBCRYPTSETUP -GCRYPT +ACL +XZ -S
+ECCOMP -APPARMOR
+Architecture=x86
+FirmwareTimestampMonotonic=0
+LoaderTimestampMonotonic=0
+KernelTimestamp=Sat 2000-01-01 00:00:06 UTC
+KernelTimestampMonotonic=0
+InitRDTimestampMonotonic=0
+UserspaceTimestamp=Sat 2000-01-01 00:00:08 UTC
+UserspaceTimestampMonotonic=1778558
+FinishTimestamp=Wed 2015-12-02 00:47:39 UTC
+FinishTimestampMonotonic=92538880
+SecurityStartTimestamp=Sat 2000-01-01 00:00:08 UTC
+SecurityStartTimestampMonotonic=1817131
+SecurityFinishTimestamp=Sat 2000-01-01 00:00:08 UTC
+SecurityFinishTimestampMonotonic=1818697
+GeneratorsStartTimestamp=Sat 2000-01-01 00:00:08 UTC
+GeneratorsStartTimestampMonotonic=2073149
+GeneratorsFinishTimestamp=Sat 2000-01-01 00:00:09 UTC
+GeneratorsFinishTimestampMonotonic=2169987
+UnitsLoadStartTimestamp=Sat 2000-01-01 00:00:09 UTC
+UnitsLoadStartTimestampMonotonic=2179262
+UnitsLoadFinishTimestamp=Sat 2000-01-01 00:00:09 UTC
+UnitsLoadFinishTimestampMonotonic=2314044
+LogLevel=info
+LogTarget=journal-or-kmsg
+NNames=221
+NFailedUnits=1
+NJobs=0
+NInstalledJobs=99
+NFailedJobs=1
+Progress=1
+Environment=PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ConfirmSpawn=no
+ShowStatus=yes
+UnitPath=/etc/systemd/system /run/systemd/system /run/systemd/generator /usr/lo
+cal/lib/systemd/system /lib/systemd/system /usr/lib/systemd/system
+DefaultStandardOutput=journal
