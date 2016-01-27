@@ -34,7 +34,7 @@ class Offset_Gyro:
          self.gy = imu.gy
          self.gz = imu.gz
 
-#gyro_offset = Offset_Gyro()
+gyro_offset = Offset_Gyro()
 
 def gyro_offset_calc():
     print "Calculating Gyroscope Offsets..."
@@ -45,7 +45,7 @@ def gyro_offset_calc():
             gyro_offset.gz = ((i-1)/i)*gyro_offset.gz + new_gyro_data.gz/i
             time.sleep(0.1)
 
-#gyro_offset_calc()
+gyro_offset_calc()
 
 class Offset_Accel:
     def __init__(self):
@@ -89,6 +89,7 @@ while (time.time() < end_time):
     current_time = time.time()
     #imu.read_mag()
     imu.read_gyro()
+    print "offset: " + str(gyro_offset.gx)
     #imu.readTemp()
 
     #accel_x.pop(0)
@@ -96,7 +97,7 @@ while (time.time() < end_time):
     #accel_time.pop(0)
     #accel_time.append(current_time)
 
-    gyro_data.write(str(imu.gz) + "\n")
+    gyro_data.write(str(imu.gz-gyro_offset.gx) + "\n")
     time_data.write(str(current_time-start_time) + "\n")
 
     #velocity = np.trapz([accel_x[0], accel_x[2]], x=[0, accel_time[2]-accel_time[0]]) 
@@ -113,7 +114,7 @@ while (time.time() < end_time):
 
     # Sleep for 1/10th of a second
     print "Time elapsed: " + str(current_time - start_time)
-    time.sleep(0.1)
+    time.sleep(0.01)
 
 
 print "test done"
