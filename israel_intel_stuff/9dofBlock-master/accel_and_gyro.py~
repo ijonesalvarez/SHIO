@@ -2,7 +2,6 @@ from SF_9DOF import IMU
 import time
 import numpy as np
 import math
-import csv
 
 # Create IMU object
 imu = IMU() # To select a specific I2C port, use IMU(n). Default is 1. 
@@ -59,33 +58,27 @@ class Gyro_Readings:
         self.gxy = imu.gz
 
 n = 0
-#rest = []
-#rest.append(Accel_Readings())
-#Axz[n] = math.atan2(rest[n].ax, rest[n].rz)
-#Ayz[n] = math.atan2(rest[n].ay, rest[n].rz)
+rest = []
+rest[n] = Accel_Readings()
+Axz[n] = math.atan2(rest[n].ax, rest[n].rz)
+Ayz[n] = math.atan2(rest[n].ay, rest[n].rz)
 rgyro = Gyro_Readings()
 n += 1
 T = 1
-starttime = time.time()
-with open('accel_tilt_data.csv', 'w') as csvfile:
-    fieldnames = ['Time', 'Ax', 'Ay', 'Az']
-    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-    writer.writeheader()
-    while (1):
-    #    Axz[n-1] = math.atan2(rest[n-1].ax, rest[n-1].rz)
-    #    Axz[n] = Axz[n-1] + rgyro[n].gxz*T
-    #    ayz[n] = Ayz[n-1] + rgyro[n].gyz*T
+while (1):
+    Axz[n-1] = math.atan2(rest[n-1].ax, rest[n-1].rz)
+    Axz[n] = Axz[n-1] + rgyro[n].gxz*T
+    ayz[n] = Ayz[n-1] + rgyro[n].gyz*T
 
-        accel = Accel_Readings()
-        #print "accel readings in g"
-        #print "R: " + str(accel.R) + " x: " + str(accel.ax) + " y: " + str(accel.ay) + " z: " + str(accel.az)
-        print "Time: " + str(time.time()-starttime)
-        accel_angles = Accel_Angles(accel)
-        #print "accel angles in degrees"
-        print "Ax: " + str(accel_angles.axr) + " Ay: " + str(accel_angles.ayr) + " Az: " + str(accel_angles.azr)
-        writer.writerow({'Time': str(time.time()-starttime), 'Ax': str(accel_angles.axr), 'Ay': str(accel_angles.ayr), 'Az': str(accel_angles.azr)})
-        time.sleep(2)
+    accel = Accel_Readings()
+    print "accel readings in g"
+    print "R: " + str(accel.R) + " x: " + str(accel.ax) + " y: " + str(accel.ay) + " z: " + str(accel.az)
+
+    accel_angles = Accel_Angles(accel)
+    print "accel angles in degrees"
+    print "Ax: " + str(accel_angles.axr) + " Ay: " + str(accel_angles.ayr) + " Az: " + str(accel_angles.azr)
+    time.sleep(1)
 
 print "test done"
-#gyro_data.close()
-#time_data.close()
+gyro_data.close()
+time_data.close()
