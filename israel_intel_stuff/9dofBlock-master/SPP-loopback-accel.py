@@ -21,6 +21,7 @@ from SF_9DOF import IMU
 import time
 import json
 import numpy as np
+import math
 
 imu = IMU()
 
@@ -93,7 +94,7 @@ class Profile(dbus.service.Object):
                         accel_angles = Accel_Angles(accel)
                         tiltx = 90 - accel_angles.axr
                         tiltz = 180 - accel_angles.azr
-                        if til > 0:
+                        if tiltx > 0:
                             tilt = (tiltz + tiltx)/2
                         else:
                             tilt = (tiltz - tiltx)/2 
